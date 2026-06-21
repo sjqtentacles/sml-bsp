@@ -4,9 +4,16 @@ LIBDIR     := lib/github.com/sjqtentacles/sml-bsp
 TEST_MLB   := test/sources.mlb
 SRCS       := $(wildcard $(LIBDIR)/*.sml $(LIBDIR)/*.sig) $(wildcard test/*.sml) $(TEST_MLB) $(LIBDIR)/sources.mlb
 
-.PHONY: all test poly test-poly all-tests clean
+.PHONY: all test poly test-poly all-tests example clean
 
 all: $(BIN)/test-mlton
+
+example: $(BIN)/dungeon
+	mkdir -p assets
+	./$(BIN)/dungeon
+
+$(BIN)/dungeon: $(SRCS) examples/dungeon.sml examples/sources.mlb | $(BIN)
+	$(MLTON) -output $@ examples/sources.mlb
 
 $(BIN)/test-mlton: $(SRCS) | $(BIN)
 	$(MLTON) -output $@ $(TEST_MLB)

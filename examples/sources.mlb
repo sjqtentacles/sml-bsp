@@ -1,0 +1,6 @@
+$(SML_LIB)/basis/basis.mlb
+
+../lib/github.com/sjqtentacles/sml-bsp/sources.mlb
+../lib/github.com/sjqtentacles/sml-raster/sources.mlb
+
+dungeon.sml
